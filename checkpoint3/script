@@ -1,0 +1,52 @@
+#!/bin/bash
+
+e=333
+count=0
+
+s=1
+while [ "$s" -le  2 ]
+do
+
+    j=1
+    while [ "$j" -le 3 ]
+    do
+
+        k=1
+        while [ "$k" -le 3 ]
+        do
+
+            l=1
+            while [ "$l" -le 3 ]
+            do
+
+                f=4
+                while [ "$f" -le 8 ]
+                do
+
+                    r=1
+                    FUs=$(($j + $k + $l))
+                    while [ "$r" -le "$FUs" ]
+                    do
+
+                        ./procsim -j "$j" -k "$k" -l "$l" -f "$f" -r "$r" -e "$e" -s "$s" < traces/gcc.100k.trace
+
+                        let count=count+1
+                        echo "$count"
+
+                        let r=r+1
+                    done
+
+                    let f=f+4
+                done
+
+                let l=l+1
+            done
+
+            let k=k+1
+        done
+
+        let j=j+1
+    done
+
+    let s=s+1
+done
